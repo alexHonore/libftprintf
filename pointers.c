@@ -1,10 +1,6 @@
 #include "libftprintf.h"
 #include "function.c"
 
-
-
-
-
 int main()
 {
     char *test;
