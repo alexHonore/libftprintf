@@ -2,12 +2,25 @@
 #include "function.c"
 #include "libftprintf.h"
 
-int	ft_is_flag()
+int	ft_is_flag(const char c)
 {
-	
-	return (0);
+	if(c == '-')
+		return (1);
+	else if (c == '+')
+	{
+		if ()
+		return (2);
+	}
+	else if (c == '#')
+		return (3);
+	else if (c == '0')
+		return (4);
+	else if (c == ' ')
+		return (4);
+	else
+		return (0);
 }
-
+// %[flags][width][.precision][length]specifier
 int	ft_printf(const char *str, ...)
 {
 	int			i;
@@ -114,8 +127,11 @@ int	main(void)
 	printf("printf u = %u\n", u);
 	ft_printf("ft_printf u = %u\n", u);
 	printf("------------------");
-	printf("printf %% = %%\n\n");
-	ft_printf("ft_printf %% = %%\n\n");
+	printf("printf %% = %%\n");
+	ft_printf("ft_printf %% = %%\n");
+	printf("------------------");
+	printf("printf d->%d  c->%c  ->%s\n", 10, "A", "Hello");
+	ft_printf("ft_printf d->%d  c->%c  ->%s\n", 10, "A", "Hello");
 }
 
 //Void *
