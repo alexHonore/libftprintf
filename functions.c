@@ -60,6 +60,13 @@ int	ft_putnbr_fd(int n, int fd)
 	return (counter);
 }
 
+int ft_putchar_lower(char c, int fd)
+{
+    if (c >= 65 && c <= 90)
+		c = c + 32;
+	return write(fd, &c, 1);
+}
+
 int	ft_hexadecimal_upper(int n)
 {
 	static char	counter[100];
@@ -85,12 +92,6 @@ int	ft_hexadecimal_upper(int n)
 	return 0;
 }
 
-int ft_putchar_lower(char c, int fd)
-{
-    if (c >= 65 && c <= 90)
-		c = c + 32;
-	return write(fd, &c, 1);
-}
 
 int ft_hexadecimal_lower(int n)
 {
@@ -117,26 +118,37 @@ int ft_hexadecimal_lower(int n)
     return 0;
 }
 
-int	ft_putnbr_hexadecimal(unsigned int n, int fd)
+int	ft_puthexadecimal(unsigned int n)
 {
-	unsigned int	counter;
-
-	counter = 0;
 	if (n < 0)
 	{
-		counter += ft_putchar_fd('-', fd);
-		counter += ft_putnbr_hexadecimal(-n, fd);
+		ft_putchar_fd('-', 1);
+		ft_puthexadecimal(n * -1);
 	}
-    if (n < 10)
+	if (n < 10)
 	{
-		counter += ft_putchar_fd(n + '0', fd);
+		
+        if ((n % 16) < 10)
+			ft_putchar_fd((48 + (n % 16)), 1);
+        else
+			ft_putchar_fd((55 + (n % 16)), 1);
+        //n = n / 16;
 	}
 	else
+		ft_puthexadecimal(n / 16);
+	ft_puthexadecimal(n % 16);
+
+	unsigned int	nbr;
+
+	nbr = n;
+	if (n < 0)
 	{
-		counter += ft_putnbr_hexadecimal(n / 10, fd);
-		counter += ft_putnbr_hexadecimal(n % 10, fd);
+		write(fd, "-", 1);
+		nbr = n * -1;
 	}
-	return (counter);
+	if (nbr > 9)
+		ft_putnbr_fd(nbr / 16, fd);
+	ft_putchar_fd(nbr % 16 + '0', fd);
 }
 
 int ft_putnbr_hexa(unsigned int c, int fd)

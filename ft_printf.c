@@ -42,10 +42,8 @@ void	ft_print_string(va_list vl, const char *c)
 		ft_putchar_fd(va_arg(vl, int), 1);
 	else if (c == 's') /* string */
 		ft_putstr_fd(va_arg(vl, char *), 1);
-	else if (c == 'X') // hexadecimal (base 16) upper format
-		ft_hexadecimal_upper(va_arg(vl, int));
-	else if (c == 'x') // hexadecimal (base 16) lower format
-		ft_hexadecimal_lower(va_arg(vl, int));
+	else if (c == 'X' || c == 'x') // hexadecimal (base 16)
+		ft_puthexadecimal(va_arg(vl, int));
 	else if (c == 'u') /* unsigned int */
 		ft_putnbr_hexa(va_arg(vl, int), 1);
 	else if (c == 'p') /* unsigned int */
