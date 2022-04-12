@@ -13,7 +13,7 @@
 #include "functions.c"
 #include "libftprintf.h"
 
-int	ft_is_flag(const char c)
+int	ft_handle_flag(const char c)
 {
 	if(c == '-')
 		return (1);
@@ -30,6 +30,14 @@ int	ft_is_flag(const char c)
 	else
 		return (0);
 }
+<<<<<<< HEAD
+int	ft_handle_width(const char c)
+{
+}
+int	ft_handle_precision(const char c)
+{
+}
+=======
 
 void	ft_print_string(va_list vl, const char *c)
 {
@@ -50,6 +58,7 @@ void	ft_print_string(va_list vl, const char *c)
 		ft_address(va_arg(vl, unsigned long));
 }
 
+>>>>>>> f1283d536519cc867d60b97608ead69eeea7a224
 // %[flags][width][.precision][length]specifier
 int	ft_printf(const char *str, ...)
 {
@@ -58,12 +67,78 @@ int	ft_printf(const char *str, ...)
 
 	va_start(vl, str);
 	i = 0;
+<<<<<<< HEAD
+	counter = 0;
+	// https://www.cplusplus.com/reference/cstdio/printf/
+=======
+>>>>>>> f1283d536519cc867d60b97608ead69eeea7a224
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
 			i++;
+<<<<<<< HEAD
+			if (str[i] == '%')
+			{
+				counter += ft_putchar_fd('%', 1);
+				break; 
+			}
+			if (str[i] == 'd' || str[i] == 'i') /* int */
+			{
+				counter += ft_putnbr_fd(va_arg(vl, int), 1);
+				break;
+			}
+			if (str[i] == 'c') /* char */
+			{
+				counter += ft_putchar_fd(va_arg(vl, int), 1);
+				break;
+			}
+			if (str[i] == 's') /* string */
+			{
+				counter += ft_putstr_fd(va_arg(vl, char *), 1);
+				break;
+			}
+			if (str[i] == 'X') // hexadecimal (base 16) upper format
+			{
+				counter += ft_hexadecimal_upper(va_arg(vl, int));
+				break;
+			}
+			if (str[i] == 'x') // hexadecimal (base 16) lower format
+			{
+				counter += ft_hexadecimal_lower(va_arg(vl, int));
+				break;
+			}
+			if (str[i] == 'u') /* unsigned int */
+			{
+				counter += ft_putnbr_hexa(va_arg(vl, int), 1);
+				break;
+			}
+			if (str[i] == 'p') /* unsigned int */
+			{
+				counter += ft_address(va_arg(vl, unsigned long));
+				break;
+			}
+			if (str[i] == 'hh') /* di = signed char | uoxX = unsigned char */
+			{
+			}
+			if (str[i] == 'h') /* di = short int | uoxX = unsigned char */
+			{
+			}
+			if (str[i] == 'l') /* di = long int | uoxX = unsigned long int | c = wint_t | s = wchar_t */
+			{
+			}
+			if (str[i] == 'll') /* di = long long int | uoxX = unsigned long long int */
+			{
+			}
+			if (str[i] == 'j') /* di = intmax_t | uoxX = intmax_t */
+			{
+			}
+			if (str[i] == 'z') /* size_t (unsigned long int genre) */
+			{
+			}
+=======
 			ft_print_string();
+>>>>>>> f1283d536519cc867d60b97608ead69eeea7a224
 		}
 		else
 			ft_putchar_fd(str[i], 1);
